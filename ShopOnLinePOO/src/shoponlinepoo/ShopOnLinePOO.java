@@ -6,17 +6,21 @@ import java.util.Scanner;
 public class ShopOnLinePOO {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Bienvenido al Sistema gestor de ventas, ¿Desea hacer una venta? (Y/N)");
         
+        System.out.println("Bienvenido al sistema Gestor de Ventas");
         String elecUsu;
+        System.out.println("¿Desea hacer una venta? (Y/N)");
         elecUsu = sc.next();
-        if(elecUsu.equalsIgnoreCase("y")){
-            System.out.println("Ingrese el Nombre del Cliente");
+        while(elecUsu.equalsIgnoreCase("Y")){
+            System.out.println("Ingrese el nombre del cliente");
             String n = sc.next();
             Cliente cliente = new Cliente(n);
             Venta venta = new Venta(cliente, LocalDate.now());
             cargarProductos(venta);
             venta.imprimirFactura();
+            sc.nextLine();
+            System.out.println("Desea seguir haciendo ventas? (Y/N)");
+            elecUsu = sc.next();
         }
         
     }
@@ -26,8 +30,7 @@ public class ShopOnLinePOO {
         String desc;
         double precio;
         int codigo;
-        Producto producto = null;
-        
+        Producto producto;
         System.out.println("Desea ingresar un producto? (1/2)");
         int n;
         n= sc.nextInt();
